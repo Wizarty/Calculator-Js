@@ -1,1 +1,1 @@
-# ![Calculator-Js Link](https://wizarty.github.io/Calculator-Js/Calculator/index.html)
+# [Calculator-Js Link](https://wizarty.github.io/Calculator-Js/Calculator/index.html)
