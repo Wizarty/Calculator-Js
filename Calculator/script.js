@@ -111,16 +111,7 @@ class Calculator {
         if(number !== number || typeof(number) === 'string' ) return number;
         else return parseFloat(number.toPrecision(10));
 
-        // const stringNumber = number.toString(),
-        //       integerPart = parseFloat(stringNumber.split('.')[0]),
-        //       decimalPart = stringNumber.split('.')[1];
-        // let display = number;
-
-        // if(isNaN(integerPart)) display = '';
-        // else display = integerPart.toLocaleString('en', { maximumFractionDigits:0} );
-
-        // if( decimalPart != null ) return `${display}.${decimalPart}`;
-        // else return display;
+        
     }
 
     updateDisplay(updateAllValues = true) {
