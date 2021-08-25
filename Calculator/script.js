@@ -15,18 +15,13 @@ class Calculator {
     }
 
     delete() {
-        // If the current operand is a result of a calculation we can't change it!
         if( typeof(this.currentOperand) !== 'string') return;
-        // In other cases let's try to delete the last character of current operand 
         this.currentOperand = this.currentOperand.slice(0,-1);
     }
 
     appendNumber(number) {
-        // If the current operand is a result of a calculation we can't change it!
         if(typeof(this.currentOperand) !== 'string') return;
-        // If we get a comma but we already have got it - leave it!
         if( number === '.' && this.currentOperand.includes('.') ) return;
-        // Otherwise add number to the current operand
         this.currentOperand =  this.currentOperand.toString() + number.toString();
     }
 
@@ -35,12 +30,12 @@ class Calculator {
         let result;
         const curr = parseFloat(this.currentOperand);
 		
-
         if( isNaN(curr) ) return;
 
         switch(operation) {
             case '√':
-                result = Math.sqrt(curr);
+			if (curr<0) result = "Error";
+            else   result = Math.sqrt(curr);
                 break;
             case '±':
                 result = - curr;
@@ -65,7 +60,6 @@ class Calculator {
             default:
                 this.operation = operation;        
         }
-        //this.operation = operation;
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
     }
@@ -90,7 +84,8 @@ class Calculator {
                 result = prev * curr;
                 break;
             case '÷':
-                result = prev / curr;
+			if (curr==0) result = "Error";
+			else result = prev / curr;
                 break;
             
             case '^':
@@ -107,8 +102,8 @@ class Calculator {
     }
 
     getDisplayNumber(number) {
-
-         function isInt(n){
+		
+function isInt(n){
     return Number(n) === n && n % 1 === 0;
 }
 
@@ -119,6 +114,7 @@ function isFloat(n){
         if(number !== number || typeof(number) === 'string' ) return number;
 		else if (isInt(number))  return Number(number.toString().slice(0,10));
         else if (isFloat(number)) return parseFloat(number.toPrecision(10)).toString();
+		
         
     }
 
@@ -149,14 +145,14 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 numberButtons.forEach(button => { 
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
-        calculator.updateDisplay(); // update display both for current and previous values
+        calculator.updateDisplay(); 
     });
 });
 
 unoOperationButtons.forEach(button => { 
     button.addEventListener('click', () => {
         calculator.computeUnoOperation(button.innerText);
-        calculator.updateDisplay(false); // update display only current value!
+        calculator.updateDisplay(false); 
     });
 });
 
