@@ -108,9 +108,17 @@ class Calculator {
 
     getDisplayNumber(number) {
 
-         if(number !== number || typeof(number) === 'string' ) return number.toString();
-        else  return parseFloat(number.toPrecision(10));
+         function isInt(n){
+    return Number(n) === n && n % 1 === 0;
+}
 
+function isFloat(n){
+    return Number(n) === n && n % 1 !== 0;
+}
+
+        if(number !== number || typeof(number) === 'string' ) return number;
+		else if (isInt(number))  return Number(number.toString().slice(0,10));
+        else if (isFloat(number)) return parseFloat(number.toPrecision(10)).toString();
         
     }
 
