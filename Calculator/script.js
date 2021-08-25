@@ -108,8 +108,8 @@ class Calculator {
 
     getDisplayNumber(number) {
 
-        if(number !== number || typeof(number) === 'string' ) return number;
-        else return parseFloat(number.toPrecision(10));
+         if(number !== number || typeof(number) === 'string' ) return number.toString();
+        else  return parseFloat(number.toPrecision(10)).toPrecision(10);
 
         
     }
