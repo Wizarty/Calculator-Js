@@ -34,7 +34,7 @@ class Calculator {
 
         switch(operation) {
             case '√':
-			if (curr<0) result = "Error";
+		if (curr<0) result = "Error";
             else   result = Math.sqrt(curr);
                 break;
             case '±':
@@ -84,8 +84,8 @@ class Calculator {
                 result = prev * curr;
                 break;
             case '÷':
-			if (curr==0) result = "Error";
-			else result = prev / curr;
+		if (curr==0) result = "Error";
+		else result = prev / curr;
                 break;
             
             case '^':
@@ -113,7 +113,7 @@ function isFloat(n){
 
         if(number !== number || typeof(number) === 'string' ) return number;
 		else if (isInt(number))  return Number(number.toString().slice(0,10));
-        else if (isFloat(number)) return parseFloat(number.toPrecision(10)).toString();
+        else if (isFloat(number)) return parseFloat(number.toPrecision(10)).toString().slice(0,11);
 		
         
     }
