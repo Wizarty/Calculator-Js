@@ -30,15 +30,31 @@ class Calculator {
         let result;
         const curr = parseFloat(this.currentOperand);
 		
+		function fact(num) {
+			  if (num < 0) 
+					return -1;
+			  else if (num == 0) 
+				  return 1;
+			  else {
+				  return (num * fact(num - 1));
+				}
+			}
+		
         if( isNaN(curr) ) return;
 
         switch(operation) {
+			case '%': 
+                result = curr/100;
+                break;
             case '√':
-		if (curr<0) result = "Error";
+			if (curr<0) result = "Error";
             else   result = Math.sqrt(curr);
                 break;
             case '±':
                 result = - curr;
+                break;
+			case '!': 
+                result = fact(curr);
                 break;
             default: 
                 return;
@@ -52,11 +68,13 @@ class Calculator {
         if(this.previousOperand !== '') this.compute(); 
 
         switch(operation){
-            
+             case 'n√x':
+                this.operation = 'yroot';
+                break;
             case '^':
                 this.operation = '^';
                 break;
-  
+			
             default:
                 this.operation = operation;        
         }
@@ -70,7 +88,7 @@ class Calculator {
               curr = parseFloat(this.currentOperand);
 
         if( isNaN(prev) || isNaN(curr) ) return;
-
+		
         switch(this.operation) {
             case '+': 
                 if( isNaN(prev) ) return;
@@ -84,10 +102,12 @@ class Calculator {
                 result = prev * curr;
                 break;
             case '÷':
-		if (curr==0) result = "Error";
-		else result = prev / curr;
+			if (curr==0) result = "Error";
+			else result = prev / curr;
                 break;
-            
+            case 'yroot':
+                result = prev ** (1 / curr);
+                break;
             case '^':
                 result = prev ** curr;
                 break;
@@ -103,13 +123,13 @@ class Calculator {
 
     getDisplayNumber(number) {
 		
-function isInt(n){
-    return Number(n) === n && n % 1 === 0;
-}
+	function isInt(n){
+		return Number(n) === n && n % 1 === 0;
+	}
 
-function isFloat(n){
-    return Number(n) === n && n % 1 !== 0;
-}
+	function isFloat(n){
+		return Number(n) === n && n % 1 !== 0;
+	}
 
         if(number !== number || typeof(number) === 'string' ) return number;
 		else if (isInt(number))  return Number(number.toString().slice(0,10));
