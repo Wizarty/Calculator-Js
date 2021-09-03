@@ -90,15 +90,8 @@ class Calculator {
         if( isNaN(prev) || isNaN(curr) ) return;
 		
 	function nthroot(x, n) {
-	  try {
-	    var negate = n % 2 == 1 && x < 0;
-	    if(negate)
-	      x = -x;
-	    var possible = Math.pow(x, 1 / n);
-	    n = Math.pow(possible, n);
-	    if(Math.abs(x - n) < 1 && (x > 0 == n > 0))
-	      return negate ? -possible : possible;
-	  } catch(e){}
+	  if(x < 0 && n%2 != 1) return NaN; // Not well defined
+  	  return (x < 0 ? -1 : 1) * Math.pow(Math.abs(x), 1/n);
 	}
 	    
 	    
