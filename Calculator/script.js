@@ -138,17 +138,15 @@ class Calculator {
 
     updateDisplay(updateAllValues = true) {
 	    
-	if (this.currentOperand == '-Infinity' || this.currentOperand == 'Infinity' || this.currentOperand == 'NaN' || this.currentOperand == 'NaN') {
-	this.currentOperandTextElement.innerText = 'Error'
-	this.currentOperand = ''
-	} else if(!updateAllValues) return;
-
-        else if( this.operation != '' ) {
+	 this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+	    
+	 if(!updateAllValues) return;
+         else if( this.operation != '' ) {
             this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-        } else {
+        }else {
             this.previousOperandTextElement.innerText = '';
         }
-	    this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+	    
     }
 }
 
