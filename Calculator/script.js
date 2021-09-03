@@ -143,7 +143,7 @@ class Calculator {
 	this.currentOperand = ''
 	} else if(!updateAllValues) return;
 
-        if( this.operation != '' ) {
+        else if( this.operation != '' ) {
             this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
         } else {
             this.previousOperandTextElement.innerText = '';
