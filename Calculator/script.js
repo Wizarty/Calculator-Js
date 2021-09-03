@@ -137,8 +137,8 @@ class Calculator {
 	}
 
         if(number !== number || typeof(number) === 'string' ) return number;
-	else if (isInt(number))  return Number(number.toString().replace(/[.]/g, ''));
-        else if (isFloat(number)) return parseFloat(number.toString());
+	else if (isInt(number))  return Number(number.toPrecision(10).toString().replace(/[.]/g, ''));
+        else if (isFloat(number)) return parseFloat(number.toPrecision(10).toString());
 		
         
     }
