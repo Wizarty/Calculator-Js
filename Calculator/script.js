@@ -30,20 +30,20 @@ class Calculator {
         let result;
         const curr = parseFloat(this.currentOperand);
 		
-		function fact(num) {
-			  if (num < 0) 
-				  return -1;
-			  else if (num == 0) 
-				  return 1;
-			  else {
-				  return (num * fact(num - 1));
-				}
-			}
+	function fact(num) {
+		if (num < 0) {
+		 return num * fact(num + 1);
+		 } else if (num == 0) {
+		  return 1;
+		 } else {
+		 return num * fact(num - 1);
+		}
+		}
 		
         if( isNaN(curr) ) return;
 
         switch(operation) {
-			case '%': 
+		case '%': 
                 result = curr/100;
                 break;
             case '√':
@@ -52,7 +52,7 @@ class Calculator {
             case '±':
                 result = - curr;
                 break;
-	    case '!': 
+		case '!': 
                 result = fact(curr);
                 break;
             default: 
@@ -130,23 +130,22 @@ class Calculator {
 	}
 
         if(number !== number || typeof(number) === 'string' ) return number;
-	else if (isInt(number)) Number(number.toString().replace(/[.]/g, ''));
-        else if (isFloat(number)) return parseFloat(number);
+	else if (isInt(number))  return Number(number.toString().replace(/[.]/g, ''));
+        else if (isFloat(number)) return parseFloat(number.toString());
 		
         
     }
 
     updateDisplay(updateAllValues = true) {
-	    
-	 this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
-	    
-	 if(!updateAllValues) return;
-         else if( this.operation != '' ) {
+        this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
+
+        if(!updateAllValues) return;
+
+        if( this.operation != '' ) {
             this.previousOperandTextElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
-        }else {
+        } else {
             this.previousOperandTextElement.innerText = '';
         }
-	    
     }
 }
 
