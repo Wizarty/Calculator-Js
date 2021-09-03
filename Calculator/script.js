@@ -65,7 +65,8 @@ class Calculator {
         if(this.currentOperand === '' || this.currentOperand === '.') return;
 
         if(this.previousOperand !== '') this.compute(); 
-
+	
+	
         switch(operation){
              case 'n√x':
                 this.operation = 'yroot';
@@ -88,6 +89,19 @@ class Calculator {
 
         if( isNaN(prev) || isNaN(curr) ) return;
 		
+	function nthroot(x, n) {
+	  try {
+	    var negate = n % 2 == 1 && x < 0;
+	    if(negate)
+	      x = -x;
+	    var possible = Math.pow(x, 1 / n);
+	    n = Math.pow(possible, n);
+	    if(Math.abs(x - n) < 1 && (x > 0 == n > 0))
+	      return negate ? -possible : possible;
+	  } catch(e){}
+	}
+	    
+	    
         switch(this.operation) {
             case '+': 
                 if( isNaN(prev) ) return;
@@ -104,7 +118,7 @@ class Calculator {
 		result = prev / curr;
                 break;
             case 'yroot':
-                result = prev ** (1 / curr);
+                result = nthroot(prev, curr);
                 break;
             case '^':
                 result = prev ** curr;
