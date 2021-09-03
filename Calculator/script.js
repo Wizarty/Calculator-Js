@@ -32,7 +32,7 @@ class Calculator {
 		
 		function fact(num) {
 			  if (num < 0) 
-					return -1;
+				  return -1;
 			  else if (num == 0) 
 				  return 1;
 			  else {
@@ -47,13 +47,12 @@ class Calculator {
                 result = curr/100;
                 break;
             case '√':
-			if (curr<0) result = "Error";
-            else   result = Math.sqrt(curr);
+		result = Math.sqrt(curr);
                 break;
             case '±':
                 result = - curr;
                 break;
-			case '!': 
+	    case '!': 
                 result = fact(curr);
                 break;
             default: 
@@ -102,8 +101,7 @@ class Calculator {
                 result = prev * curr;
                 break;
             case '÷':
-			if (curr==0) result = "Error";
-			else result = prev / curr;
+		result = prev / curr;
                 break;
             case 'yroot':
                 result = prev ** (1 / curr);
@@ -139,6 +137,12 @@ class Calculator {
     }
 
     updateDisplay(updateAllValues = true) {
+	    
+	if (this.currentOperand == '-Infinity' || this.currentOperand == 'Infinity') {
+	this.currentOperandTextElement.innerText = 'Error'
+	this.currentOperand = ''
+	}
+	    
         this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand);
 
         if(!updateAllValues) return;
