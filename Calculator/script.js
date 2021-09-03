@@ -130,7 +130,7 @@ class Calculator {
 	}
 
         if(number !== number || typeof(number) === 'string' ) return number;
-	else return Number(number.toString().replace(/[.]/g, ''));
+	else if (isInt(number)) Number(number.toString().replace(/[.]/g, ''));
         else if (isFloat(number)) return parseFloat(number);
 		
         
